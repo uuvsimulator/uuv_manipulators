@@ -26,7 +26,7 @@ this package in the `src` folder of you catkin workspace
 
 ```
 cd ~/catkin_ws/src
-git clone https://github.com/uuvsimulator/rexrov2.git
+git clone https://github.com/uuvsimulator/uuv_manipulators.git
 ```
 
 and then build your catkin workspace
