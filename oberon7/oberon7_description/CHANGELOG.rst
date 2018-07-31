@@ -2,8 +2,8 @@
 Changelog for package oberon7_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.0 (2018-07-31)
+------------------
 * MV uuv_manipulators package transfered from uuv_simulator
   Signed-off-by: Musa Morena Marcusso Manhaes <Musa.Marcusso@de.bosch.com>
 * Contributors: Musa Morena Marcusso Manhaes
