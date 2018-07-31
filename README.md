@@ -7,6 +7,8 @@ an open-source project extending the simulation capabilities of the robotics
 simulator Gazebo to underwater vehicles and environments. For installation and
 usage instructions, please refer to the [documentation pages](https://uuvsimulator.github.io/).
 
+[![SWARMs Manipulation Demonstration](https://img.youtube.com/vi/vKMR8-7WRF4/0.jpg)](https://www.youtube.com/watch?v=vKMR8-7WRF4 "SWARMs - Semi-autonomous manipulation of simulated ROV")
+
 ## Purpose of the project
 
 This software is a research prototype, originally developed for the EU ECSEL
