@@ -1,5 +1,7 @@
 # Underwater Manipulators
 
+[![Build Status](https://travis-ci.org/uuvsimulator/uuv_manipulators.svg?branch=master)](https://travis-ci.org/uuvsimulator/uuv_manipulators)
+
 This repository contains the robot description and necessary nodes to simulate underwater 
 manipulators integrated to underwater vehicles. This repository is complementary
 to the [Unmanned Underwater Vehicle Simulator (UUV Simulator)](https://github.com/uuvsimulator/uuv_simulator),
