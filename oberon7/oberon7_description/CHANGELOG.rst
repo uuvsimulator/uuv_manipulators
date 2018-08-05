@@ -2,6 +2,9 @@
 Changelog for package oberon7_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.1 (2018-08-05)
+------------------
+
 0.6.0 (2018-07-31)
 ------------------
 * MV uuv_manipulators package transfered from uuv_simulator

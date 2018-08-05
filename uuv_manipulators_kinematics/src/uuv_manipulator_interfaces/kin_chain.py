@@ -61,7 +61,7 @@ class KinChainInterface(object):
             key=self._namespace + 'robot_description')
 
         # KDL tree of the whole structure
-        self._kdl_tree = treeFromUrdfModel(self._robot_description)
+        ok, self._kdl_tree = treeFromUrdfModel(self._robot_description)
 
         # Base link
         self._base_link = base
