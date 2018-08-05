@@ -2,6 +2,12 @@
 Changelog for package uuv_manipulators_kinematics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* FIX Parse output from KDL parser
+  Signed-off-by: Musa Morena Marcusso Manhaes <Musa.Marcusso@de.bosch.com>
+* Contributors: Musa Morena Marcusso Manhaes
+
 0.6.0 (2018-07-31)
 ------------------
 * MV uuv_manipulators package transfered from uuv_simulator

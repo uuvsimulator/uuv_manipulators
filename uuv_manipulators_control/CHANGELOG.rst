@@ -2,6 +2,9 @@
 Changelog for package uuv_manipulators_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.6.0 (2018-07-31)
 ------------------
 * MV uuv_manipulators package transfered from uuv_simulator
