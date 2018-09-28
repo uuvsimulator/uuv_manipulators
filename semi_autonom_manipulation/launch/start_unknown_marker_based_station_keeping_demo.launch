@@ -1,0 +1,113 @@
+<!-- Work in progress. Code not working yet!!! -->
+
+<launch>
+
+  <arg name="panel_x" default="17.7"/>
+  <arg name="panel_y" default="0"/>
+  <arg name="panel_z" default="-94.72"/>
+  <arg name="panel_roll" default="0.0"/>
+  <arg name="panel_pitch" default="1.57"/>
+  <arg name="panel_yaw" default="3.14159265"/>
+
+  <include file="$(find uuv_descriptions)/launch/subsea_bop_panel.launch">
+    <arg name="paused" value="0"/>
+  </include>
+
+  <!-- <include file="$(find uuv_descriptions)/launch/ocean_waves.launch">
+    <arg name="paused" value="0"/>
+  </include>
+  <include file="$(find uuv_descriptions)/launch/subsea_bop_panel.launch">
+
+  <node name="sdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-sdf -x $(arg panel_x) -y $(arg panel_y) -z $(arg panel_z) -R $(arg panel_roll) -P $(arg panel_pitch) -Y $(arg panel_yaw) -model rov_bop_panel_marker -database rov_bop_panel_marker"/> -->
+
+  <!-- <node name="sdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-sdf -x 30 -y 0 -z -80 -R 0.0 -P 0.0 -Y 3.14159265 -model bop_panel -database bop_panel"/> -->
+
+    <!-- <node name="sdf_spawner_1" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+      args="-sdf -x 17.7 -y 0 -z -94.72 -R 0.0 -P 1.57 -Y 3.14159265 -model rov_bop_panel_marker1 -database rov_bop_panel_marker"/>
+
+    <node name="sdf_spawner_2" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+      args="-sdf -x 16.55 -y -2 -z -94.72 -R 0.0 -P 1.1 -Y 2.09 -model rov_bop_panel_marker2 -database rov_bop_panel_marker"/>
+
+    <node name="sdf_spawner_3" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+      args="-sdf -x 14.25 -y -2 -z -94.72 -R 0.0 -P 0.6 -Y 1.047 -model rov_bop_panel_marker3 -database rov_bop_panel_marker"/>
+
+    <node name="sdf_spawner_4" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+      args="-sdf -x 13.1 -y 0 -z -94.72 -R 0.0 -P 0.0 -Y 0.0 -model rov_bop_panel_marker4 -database rov_bop_panel_marker"/> -->
+
+    <include file="$(find rexrov2_description)/launch/upload_rexrov2_oberon7.launch">
+      <arg name="x" value="6.5"/>
+      <arg name="y" value="-0.5"/>
+      <arg name="z" value="-50"/>
+      <arg name="yaw" value="3.1415"/>
+    </include>
+
+    <!-- <include file="$(find rexrov2_description)/launch/upload_rexrov2_oberon7.launch">
+      <arg name="x" value="15.4"/>
+      <arg name="y" value="0.0"/>
+      <arg name="z" value="-93.5"/>
+      <arg name="yaw" value="0"/>
+    </include> -->
+
+    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find rexrov2_control)/rviz/rexrov2_control.rviz"/>
+
+    <!-- Start tag odometry detection and estimation -->
+    <include file="$(find uuv_simulator_visual_servoing)/launch/start_fiducials_estimation.launch"/>
+
+    <!-- Start EKF for vehicle odometry estimation -->
+    <!-- <include file="$(find uuv_simulator_visual_servoing)/launch/start_uuv_simulator_ekf.launch">
+      <arg name="usbl_odom_source" value="pose_gt"/>
+      <arg name="usbl_transceiver_position_x" value="15.0"/>
+      <arg name="usbl_transceiver_position_y" value="0"/>
+      <arg name="usbl_transceiver_position_z" value="-83.0"/>
+      <arg name="usbl_rate_Hz" value="0.5"/>
+      <arg name="usbl_slant_range_accuracy" value="0.002"/>
+      <arg name="usbl_bearing_resolution" value="0.1"/>
+    </include> --><!-- <include file="$(find oberon7_control)/launch/start_manipulator_smc.launch">
+      <arg name="uuv_name" value="rexrov2"/>
+      <arg name="arm_name" value="oberon7"/>
+    </include> -->
+
+    <!-- This node estimates vehicle odometry based on marker pose -->
+    <!-- <group ns="rexrov2">
+      <node pkg="uuv_simulator_visual_servoing"
+        type="unknown_marker_odometry_estimation.py"
+        name="unknown_marker_odometry_estimation"
+        output="screen">
+        <rosparam param="odom_source">odometry/filtered</rosparam>
+      </node>
+    </group> -->
+
+    <include file="$(find uuv_simulator_visual_servoing)/launch/start_rov_pid_controller.launch">
+      <arg name="uuv_name" value="rexrov2"/>
+      <arg name="model_name" value="rexrov2"/>
+      <arg name="odom_source" value="pose_gt"/>
+      <arg name="use_ned_frame" value="false"/>
+    </include>
+    <!-- <include file="$(find rexrov2_control)/launch/start_nmb_sm_controller.launch">
+      <arg name="uuv_name" value="rexrov2"/>
+      <arg name="use_ned_frame" value="false"/>
+    </include> -->
+
+    <include file="$(find uuv_simulator_visual_servoing)/launch/uuv_teleop_semi_autonom.launch">
+      <arg name="uuv_name" value="rexrov2"/>
+    </include>
+
+    <!-- <include file="$(find uuv_simulator_visual_servoing)/launch/start_semi_autonom_jt_cartesian_controller.launch">
+      <arg name="uuv_name" value="rexrov2"/>
+      <arg name="arm_name" value="oberon7"/>
+    </include> -->
+
+    <include file="$(find uuv_simulator_visual_servoing)/launch/start_semi_autonom_manip_smc_.launch">
+      <arg name="uuv_name" value="rexrov2"/>
+      <arg name="arm_name" value="oberon7"/>
+    </include>
+
+    <!-- <include file="$(find uuv_simulator_visual_servoing)/launch/start_semi_autonom_manip_smc.launch">
+      <arg name="uuv_name" value="rexrov2"/>
+      <arg name="arm_name" value="oberon7"/>
+      <arg name="semi_autonom" value="1"/>
+    </include> -->
+
+</launch>
